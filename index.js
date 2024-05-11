@@ -1,13 +1,9 @@
-function maxProduct(nums) {
-  if (nums.length === 0) return 0;
-  let maxSoFar = nums[0];
-  let minSoFar = nums[0];
-  let maxProduct = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    const temp = maxSoFar;
-    maxSoFar = Math.max(nums[i], nums[i] * maxSoFar, nums[i] * minSoFar);
-    minSoFar = Math.min(nums[i], nums[i] * temp, nums[i] * minSoFar);
-    maxProduct = Math.max(maxProduct, maxSoFar);
+function isSubsequence(s, t) {
+  let i = 0;
+  let j = 0;
+  while (i < s.length && j < t.length) {
+    if (s[i] === t[j]) i++;
+    j++;
   }
-  return maxProduct;
+  return i === s.length;
 }
