@@ -1,11 +1,12 @@
-function generate(numRows) {
-  const triangle = [];
-  for (let i = 0; i < numRows; i++) {
-    const row = new Array(i + 1).fill(1);
-    for (let j = 1; j < row.length - 1; j++) {
-      row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+function lengthOfLIS(nums) {
+  if (nums.length === 0) return 0;
+  const dp = new Array(nums.length).fill(1);
+  let max = 1;
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j] + 1);
     }
-    triangle.push(row);
+    max = Math.max(max, dp[i]);
   }
-  return triangle;
+  return max;
 }
